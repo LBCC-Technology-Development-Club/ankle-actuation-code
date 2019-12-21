@@ -12,7 +12,6 @@ void setup() {
   pinMode(enA, OUTPUT);
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
-  
 }
 
 void loop() {

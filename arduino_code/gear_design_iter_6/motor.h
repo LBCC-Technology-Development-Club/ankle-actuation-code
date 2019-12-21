@@ -5,5 +5,6 @@ struct motor {
   int IN2;
   
   //Speed
-  float speed;
+  float analog_speed;
 };
+
