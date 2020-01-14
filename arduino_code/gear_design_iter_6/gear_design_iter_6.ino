@@ -1,38 +1,48 @@
-#include <motor.h>
+struct motor {
+  // Ports
+  int EN;
+  int IN1;
+  int IN2;
+  
+  //Speed
+  float analog_speed;
+};
 
-struct motor motor1;
-motor1.EN = 9;
-motor1.IN1 = 8;
-motor1.IN2 = 7;
-
-
-struct motor motor2;
-motor2.EN = 1;
-motor2.IN1 = 2;
-motor2.IN2 = 3;
-
+motor motor1 = {9, 8, 7, 0};
 
 
 
+//struct motor motor2;
+//motor2.EN = 1;
+//motor2.IN1 = 2;
+//motor2.IN2 = 3;
 
-potentiometer = 10;
 
-pressureSensor1 = 6;
-pressureSensor2 = 5;
+
+
+
+//potentiometer = 10;
+
+int pressureSensor1 = A0;
+int pressureSensor2 = A1;
 
 void setup() {
+  Serial.begin(9600);
   pinMode(motor1.EN, OUTPUT);
   pinMode(motor1.IN1, OUTPUT);
   pinMode(motor1.IN2, OUTPUT);
   
-  pinMode(potentiometer, INPUT);
+//  pinMode(potentiometer, INPUT);
   
   pinMode(pressureSensor1, INPUT);
   pinMode(pressureSensor2, INPUT);
 }
 
 void loop() {
-  
+  Serial.print("PressureSensor1: ");
+  Serial.println(analogRead(pressureSensor1));
+  Serial.print("PressureSensor2: ");
+  Serial.println(analogRead(pressureSensor2));  
   if(analogRead(pressureSensor1) == 0 && analogRead(pressureSensor2) == 0) {
     motor1.analog_speed = 0;
     motor_clockwise(motor1);
@@ -41,11 +51,11 @@ void loop() {
     motor1.analog_speed = 150;
     motor_clockwise(motor1);
   }
-  else if (analogRead(pressureSensor1) != 0 && analogRead(pressureSensor2) != 0) {
-    motor1.analog_speed = 0;
-    motor_clockwise(motor1);
+  else if (analogRead(pressureSensor1) == 0 && analogRead(pressureSensor2) != 0) {
+    motor1.analog_speed = -150;
+    motor_counterclockwise(motor1);
   }
- 
+ delay(15);
 
 }
 
