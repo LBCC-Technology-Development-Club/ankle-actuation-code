@@ -72,10 +72,10 @@ test_labels = np.array(test_labels)
 # print(data_running.shape[0])
 # data_running_labels = np.full(data_running.shape[0], 1)
 
-# data_samples = np.concatenate([data_standing, data_walking])
-# data_labels = np.concatenate([data_standing_labels, data_walking_labels])
+data_samples = np.concatenate([data_standing, data_walking])
+data_labels = np.concatenate([data_standing_labels, data_walking_labels])
 
-# train_samples, train_labels = shuffle_in_unison(data_samples, data_labels)
+train_samples, train_labels = shuffle_in_unison(data_samples, data_labels)
 
 print(data_samples.shape)
 print(data_labels.shape)

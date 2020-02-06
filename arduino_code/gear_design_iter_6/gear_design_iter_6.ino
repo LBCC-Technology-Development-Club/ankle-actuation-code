@@ -48,11 +48,11 @@ void loop() {
     motor_clockwise(motor1);
   }
   else if (analogRead(pressureSensor1) != 0 && analogRead(pressureSensor2) == 0) {
-    motor1.analog_speed = 150;
+    motor1.analog_speed = 100;
     motor_clockwise(motor1);
   }
   else if (analogRead(pressureSensor1) == 0 && analogRead(pressureSensor2) != 0) {
-    motor1.analog_speed = -150;
+    motor1.analog_speed = 100;
     motor_counterclockwise(motor1);
   }
  delay(15);
