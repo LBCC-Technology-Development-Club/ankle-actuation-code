@@ -15,8 +15,8 @@ if __name__ == "__main__":
     data_standing, labels_standing = load_data("standing")
     data_walking, labels_walking = load_data("walking")
 
-    data = np.concatenate([data_standing, data_walking])
-    labels = np.concatenate([labels_standing, labels_walking])
+    data = np.concatenate([data_standing, data_walking])[0:1500]
+    labels = np.concatenate([labels_standing, labels_walking])[0:1500]
 
     data, labels = shuffle_in_unison(data, labels)
     data, labels = torch.from_numpy(data), torch.from_numpy(labels)
@@ -39,6 +39,7 @@ if __name__ == "__main__":
             batch_x, batch_y = data[indices], labels[indices]
 
             output = model(batch_x.float()) 
+
             loss = criterion(output, batch_y.float())
 
             print('epoch: ', epoch, 'data: ', data_points,' loss: ', loss.item()) 
