@@ -22,6 +22,7 @@ if __name__ == "__main__":
     data, labels = torch.from_numpy(data), torch.from_numpy(labels)
 
     model = pickle.load(open("./sl/trained_models/standing_walking_MSELoss_Adam_5e-5_1000epochs_100bs.p", "rb"))
+    criterion = nn.MSELoss()
 
     for data_points in range(0, data.shape[0]):
 
