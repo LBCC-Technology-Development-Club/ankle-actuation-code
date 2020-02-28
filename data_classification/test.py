@@ -5,6 +5,8 @@ import torch.nn as nn
 import pandas as pd
 import pickle
 from random import randint
+from sklearn import preprocessing
+
 
 from sl.net.classifier_9_1_sigmoid import Net
 from sl.data.load_data import load_data, shuffle_in_unison
@@ -12,11 +14,11 @@ from sl.data.load_data import load_data, shuffle_in_unison
 
 if __name__ == "__main__":
 
-    data_standing, labels_standing = load_data("standing")
-    data_walking, labels_walking = load_data("walking")
+    data_standing, labels_standing = load_data("standing", "test")
+    data_walking, labels_walking = load_data("walking", "test")
 
-    data = np.concatenate([data_standing, data_walking])[1500:1803]
-    labels = np.concatenate([labels_standing, labels_walking])[1500:1803]
+    data = np.concatenate([data_standing, data_walking])
+    labels = np.concatenate([labels_standing, labels_walking])
 
     data, labels = shuffle_in_unison(data, labels)
     data, labels = torch.from_numpy(data), torch.from_numpy(labels)
