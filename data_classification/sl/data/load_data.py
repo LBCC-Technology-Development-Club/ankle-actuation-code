@@ -5,7 +5,7 @@ import torch.nn as nn
 from random import randint
 import pandas as pd
 
-def load_data(data_type):
+def load_data(data_type, train_eval):
     if data_type == "standing":
         data = pd.read_csv("./sl/data/standing_data.csv").values
         labels = np.full(data.shape[0], 0)
@@ -19,7 +19,12 @@ def load_data(data_type):
         print("Data isn't defined.")
         sys.exit(0)
 
-    return torch.from_numpy(data), torch.from_numpy(labels).unsqueeze(1)
+    if train_eval = "train":
+        return torch.from_numpy(data)[0:450], torch.from_numpy(labels).unsqueeze(1)[0:450]
+    else train_eval = "test":
+        return torch.from_numpy(data)[450:909], torch.from_numpy(labels).unsqueeze(1)[450:909]
+    else:
+        sys.exit(0)
 
 def shuffle_in_unison(a, b):
     rng_state = np.random.get_state()
